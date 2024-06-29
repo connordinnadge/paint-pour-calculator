@@ -19,7 +19,7 @@ export default function HomePage() {
                 <Card className='relative z-10  rounded-2xl text-center'>
                     <CardHeader className='flex flex-col items-center justify-center'>
                         <h1 className='text-2xl font-bold'>Acrylic Pour Paint Calculator</h1>
-                        <p className='w-4/6 text-center'>
+                        <p className='md:4/6 w-5/6 text-center'>
                             Calculate the perfect paint mix for stunning acrylic pours. Enter your canvas size and
                             desired paint consistency to get started!
                         </p>
