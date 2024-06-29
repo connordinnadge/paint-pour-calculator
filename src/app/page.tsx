@@ -19,7 +19,10 @@ export default function HomePage() {
                 <Card className='relative z-10 rounded-2xl '>
                     <CardHeader>
                         <h1 className='text-2xl font-bold'>Acrylic Pour Paint Calculator</h1>
-                        <p>Some words about it</p>
+                        <p>
+                            Calculate the perfect paint mix for stunning acrylic pours. Enter your canvas size and
+                            desired paint consistency to get started!
+                        </p>
                     </CardHeader>
                     <CardContent>
                         <PaintCalculator />
