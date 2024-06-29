@@ -31,27 +31,27 @@ const Index: NextComponentType<NextPageContext> = () => {
             const area = canvasWidth * canvasHeight
             const sideArea = 2 * canvasDepth * (canvasWidth + canvasHeight)
             const totalArea = (area + sideArea) * paintConsistency
-            totalPaint = totalArea / 25
+            totalPaint = totalArea / (unitsMetric ? 6.45 : 25)
         }
         if (canvasShape === 'circle') {
             const area = Math.PI * Math.pow(canvasDiameter / 2, 2) * canvasDepth
             const circumference = Math.PI * canvasDiameter
             const sideArea = circumference * canvasDepth
             const totalArea = (area + sideArea) * paintConsistency
-            totalPaint = totalArea / 25
+            totalPaint = totalArea / (unitsMetric ? 6.45 : 25)
         }
         if (canvasShape === 'triangle') {
             const area = (canvasWidth * canvasWidth) / 2
             const sideArea = 3 * (canvasWidth * canvasDepth)
             const totalArea = (area + sideArea) * paintConsistency
-            totalPaint = totalArea / 25
+            totalPaint = totalArea / (unitsMetric ? 6.45 : 25)
         }
         if (canvasShape === 'hexagon') {
             const area = (3 * Math.sqrt(3) * Math.pow(canvasDiameter, 2)) / 2
             const perimeter = 6 * canvasDiameter
             const sideArea = perimeter * canvasDepth
             const totalArea = (area + sideArea) * paintConsistency
-            totalPaint = totalArea / 25
+            totalPaint = totalArea / (unitsMetric ? 6.45 : 25)
         }
         const roundedToTwoDecimals = parseFloat(totalPaint.toFixed(1))
         setTotalPaintNeeded(roundedToTwoDecimals)
@@ -123,19 +123,19 @@ const Index: NextComponentType<NextPageContext> = () => {
             </div>
             {canvasShape === 'squareOrRectangle' && (
                 <div>
-                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Width (inches)</p>
+                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Width ({unitsMetric ? 'cm' : 'inches'})</p>
                     <Input
                         type='number'
                         value={canvasWidth}
                         onChange={(e) => setCanvasWidth(parseFloat(e.target.value))}
                     />
-                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Height (inches)</p>
+                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Height ({unitsMetric ? 'cm' : 'inches'})</p>
                     <Input
                         type='number'
                         value={canvasHeight}
                         onChange={(e) => setCanvasHeight(parseFloat(e.target.value))}
                     />
-                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Depth (inches)</p>
+                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Depth ({unitsMetric ? 'cm' : 'inches'})</p>
                     <Input
                         type='number'
                         value={canvasDepth}
@@ -145,13 +145,13 @@ const Index: NextComponentType<NextPageContext> = () => {
             )}
             {canvasShape === 'circle' && (
                 <div>
-                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Width (inches)</p>
+                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Width ({unitsMetric ? 'cm' : 'inches'})</p>
                     <Input
                         type='number'
                         value={canvasDiameter}
                         onChange={(e) => setCanvasDiameter(parseFloat(e.target.value))}
                     />
-                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Depth (inches)</p>
+                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Depth ({unitsMetric ? 'cm' : 'inches'})</p>
                     <Input
                         type='number'
                         value={canvasDepth}
@@ -161,13 +161,13 @@ const Index: NextComponentType<NextPageContext> = () => {
             )}
             {canvasShape === 'triangle' && (
                 <div>
-                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Width (inches)</p>
+                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Width ({unitsMetric ? 'cm' : 'inches'})</p>
                     <Input
                         type='number'
                         value={canvasWidth}
                         onChange={(e) => setCanvasWidth(parseFloat(e.target.value))}
                     />
-                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Depth (inches)</p>
+                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Depth ({unitsMetric ? 'cm' : 'inches'})</p>
                     <Input
                         type='number'
                         value={canvasDepth}
@@ -177,13 +177,13 @@ const Index: NextComponentType<NextPageContext> = () => {
             )}
             {canvasShape === 'hexagon' && (
                 <div>
-                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Width (inches)</p>
+                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Width ({unitsMetric ? 'cm' : 'inches'})</p>
                     <Input
                         type='number'
                         value={canvasDiameter}
                         onChange={(e) => setCanvasDiameter(parseFloat(e.target.value))}
                     />
-                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Depth (inches)</p>
+                    <p className='mb-2 ml-2 text-left font-bold'>Canvas Depth ({unitsMetric ? 'cm' : 'inches'})</p>
                     <Input
                         type='number'
                         value={canvasDepth}
@@ -193,7 +193,7 @@ const Index: NextComponentType<NextPageContext> = () => {
             )}
             <p className='font-bold uppercase'>Paint Required</p>
             <p className='text-[5rem] font-bold leading-[4rem]'>{totalPaintneeded}</p>
-            <p className='font-bold uppercase'>ounces</p>
+            <p className='font-bold uppercase'>{unitsMetric ? 'grams' : 'ounces'}</p>
         </div>
     )
 }
