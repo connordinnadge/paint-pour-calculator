@@ -16,10 +16,10 @@ export default function HomePage() {
                     priority={true}
                 />
                 <div className='absolute left-0 top-0 h-[100vh] w-full bg-black bg-opacity-30'></div>
-                <Card className='relative z-10 rounded-2xl '>
-                    <CardHeader>
+                <Card className='relative z-10  rounded-2xl text-center'>
+                    <CardHeader className='flex flex-col items-center justify-center'>
                         <h1 className='text-2xl font-bold'>Acrylic Pour Paint Calculator</h1>
-                        <p>
+                        <p className='w-4/6 text-center'>
                             Calculate the perfect paint mix for stunning acrylic pours. Enter your canvas size and
                             desired paint consistency to get started!
                         </p>
