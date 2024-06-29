@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Input } from '../ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
+import { Switch } from '../ui/switch'
 
 const Index: NextComponentType<NextPageContext> = () => {
     const [unitsMetric, setUnitsMetric] = useState(true)
@@ -63,7 +64,7 @@ const Index: NextComponentType<NextPageContext> = () => {
 
     return (
         <div className='flex w-full flex-col gap-5'>
-            <div>
+            <div className='flex flex-col items-start justify-start'>
                 <p className='mb-2 ml-2 text-left font-bold'>Pour Consistency:</p>
                 <TooltipProvider>
                     <div className='mb-3 grid w-full grid-cols-3'>
@@ -191,6 +192,10 @@ const Index: NextComponentType<NextPageContext> = () => {
                     />
                 </div>
             )}
+            <div className='mb-3 flex w-full items-center justify-start'>
+                <p className='ml-2 text-left font-semibold'>Metric Units</p>
+                <Switch checked={unitsMetric} onCheckedChange={setUnitsMetric} className='ml-2' />
+            </div>
             <p className='font-bold uppercase'>Paint Required</p>
             <p className='text-[5rem] font-bold leading-[4rem]'>{totalPaintneeded}</p>
             <p className='font-bold uppercase'>{unitsMetric ? 'grams' : 'ounces'}</p>
