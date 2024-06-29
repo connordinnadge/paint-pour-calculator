@@ -65,12 +65,12 @@ const Index: NextComponentType<NextPageContext> = () => {
         <div className='flex w-full flex-col gap-5'>
             <div>
                 <p className='mb-2 ml-2 text-left font-bold'>Pour Consistency:</p>
-                <div className='mb-3 flex justify-start'>
+                <div className='mb-3 grid w-full grid-cols-3'>
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger>
                                 <button
-                                    className={`${consistency === 'thin' ? 'bg-gray-600 text-white' : 'bg-gray-400 text-white'} rounded-l-xl px-5 py-2 font-bold`}
+                                    className={`${consistency === 'thin' ? 'bg-purple-600 text-white' : 'bg-purple-400 text-white'} w-full rounded-l-xl px-5 py-2 font-bold`}
                                     onClick={() => setConsistency('thin')}
                                 >
                                     Thin
@@ -83,7 +83,7 @@ const Index: NextComponentType<NextPageContext> = () => {
                         <Tooltip>
                             <TooltipTrigger>
                                 <button
-                                    className={`${consistency === 'medium' ? 'bg-gray-600 text-white' : 'bg-gray-400 text-white'} px-5 py-2 font-bold`}
+                                    className={`${consistency === 'medium' ? 'bg-purple-600 text-white' : 'bg-purple-400 text-white'}  w-full px-5 py-2 font-bold`}
                                     onClick={() => setConsistency('medium')}
                                 >
                                     Medium
@@ -96,7 +96,7 @@ const Index: NextComponentType<NextPageContext> = () => {
                         <Tooltip>
                             <TooltipTrigger>
                                 <button
-                                    className={`${consistency === 'thick' ? 'bg-gray-600 text-white' : '  bg-gray-400 text-white'}  rounded-r-xl px-5 py-2 font-bold`}
+                                    className={`${consistency === 'thick' ? 'bg-purple-600 text-white' : '  bg-purple-400 text-white'}  w-full rounded-r-xl px-5 py-2 font-bold`}
                                     onClick={() => setConsistency('thick')}
                                 >
                                     Thick
