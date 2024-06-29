@@ -60,7 +60,7 @@ const Index: NextComponentType<NextPageContext> = () => {
 
     useEffect(() => {
         calculatePaintNeeded()
-    }, [canvasShape, canvasWidth, canvasHeight, canvasDiameter, canvasDepth, consistency])
+    }, [canvasShape, canvasWidth, canvasHeight, canvasDiameter, canvasDepth, consistency, unitsMetric])
 
     return (
         <div className='flex w-full flex-col gap-5'>
