@@ -3,6 +3,7 @@ import type { NextComponentType, NextPageContext } from 'next'
 import { useEffect, useState } from 'react'
 import { Input } from '../ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 
 const Index: NextComponentType<NextPageContext> = () => {
     const [unitsMetric, setUnitsMetric] = useState(true)
@@ -61,28 +62,51 @@ const Index: NextComponentType<NextPageContext> = () => {
     }, [canvasShape, canvasWidth, canvasHeight, canvasDiameter, canvasDepth, consistency])
 
     return (
-        <div className='flex flex-col gap-5'>
+        <div className='flex w-full flex-col gap-5'>
             <div>
                 <p className='mb-2 ml-2 text-left font-bold'>Pour Consistency:</p>
-                <div>
-                    <button
-                        className={`${consistency === 'thin' ? 'bg-gray-600 text-white' : 'bg-gray-400 text-white'} rounded-l-xl px-5 py-2 font-bold`}
-                        onClick={() => setConsistency('thin')}
-                    >
-                        Thin
-                    </button>
-                    <button
-                        className={`${consistency === 'medium' ? 'bg-gray-600 text-white' : 'bg-gray-400 text-white'} px-5 py-2 font-bold`}
-                        onClick={() => setConsistency('medium')}
-                    >
-                        Medium
-                    </button>
-                    <button
-                        className={`${consistency === 'thick' ? 'bg-gray-600 text-white' : '  bg-gray-400 text-white'}  rounded-r-xl px-5 py-2 font-bold`}
-                        onClick={() => setConsistency('thick')}
-                    >
-                        Thick
-                    </button>
+                <div className='mb-3 flex justify-start'>
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <button
+                                    className={`${consistency === 'thin' ? 'bg-gray-600 text-white' : 'bg-gray-400 text-white'} rounded-l-xl px-5 py-2 font-bold`}
+                                    onClick={() => setConsistency('thin')}
+                                >
+                                    Thin
+                                </button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Fluid and smooth. Ideal for swipes and cells.</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <button
+                                    className={`${consistency === 'medium' ? 'bg-gray-600 text-white' : 'bg-gray-400 text-white'} px-5 py-2 font-bold`}
+                                    onClick={() => setConsistency('medium')}
+                                >
+                                    Medium
+                                </button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Balanced. Perfect for dirty pours and flip cups..</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <button
+                                    className={`${consistency === 'thick' ? 'bg-gray-600 text-white' : '  bg-gray-400 text-white'}  rounded-r-xl px-5 py-2 font-bold`}
+                                    onClick={() => setConsistency('thick')}
+                                >
+                                    Thick
+                                </button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Slow-moving. Suitable for controlled pours.</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
                 </div>
                 <p className='mb-2 ml-2 text-left font-bold'>Canvas Shape:</p>
                 <Select value={canvasShape} onValueChange={setCanvasShape}>
