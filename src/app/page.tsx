@@ -3,6 +3,7 @@ import Image from 'next/image'
 import bgImage from '../../public/images/paint-pour.jpg'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 const title = 'Acrylic Pour Paint Calculator | Connor Dinnadge'
 const description =
@@ -85,7 +86,7 @@ export default function HomePage() {
                     className='z-0'
                     priority={true}
                 />
-                <div className='absolute left-0 top-0 h-[100vh] w-full bg-black bg-opacity-30'></div>
+                <div className='absolute left-0 top-0 h-[100vh] w-full bg-black bg-opacity-50'></div>
                 <Card className='relative z-10  rounded-2xl text-center'>
                     <CardHeader className='flex flex-col items-center justify-center'>
                         <h1 className='text-2xl font-bold'>Acrylic Pour Paint Calculator</h1>
@@ -98,6 +99,12 @@ export default function HomePage() {
                         <PaintCalculator />
                     </CardContent>
                 </Card>
+                <p className='absolute bottom-10 w-full text-xs text-gray-200'>
+                    Created by{' '}
+                    <Link href='https://connordinnadge.com' target='_blank' className='underline'>
+                        Connor Dinnadge
+                    </Link>
+                </p>
             </section>
         </main>
     )
