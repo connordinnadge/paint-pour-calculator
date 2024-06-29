@@ -1,19 +1,12 @@
 'use client'
 import type { NextComponentType, NextPageContext } from 'next'
 import { useEffect, useState } from 'react'
-import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 
-interface Colour {
-    name: string
-    hex: string
-    percentage: number
-    paintNeeded: number
-}
-
 const Index: NextComponentType<NextPageContext> = () => {
     const [unitsMetric, setUnitsMetric] = useState(true)
+    const [consistency, setConsistency] = useState('medium')
     const [canvasShape, setCanvasShape] = useState('squareOrRectangle')
     const [canvasWidth, setCanvasWidth] = useState(0)
     const [canvasDiameter, setCanvasDiameter] = useState(0)
@@ -22,44 +15,75 @@ const Index: NextComponentType<NextPageContext> = () => {
     const [totalPaintneeded, setTotalPaintNeeded] = useState(0)
 
     function calculatePaintNeeded() {
+        let paintConsistency = 0
+        if (consistency === 'thin') {
+            paintConsistency = 0.8
+        }
+        if (consistency === 'medium') {
+            paintConsistency = 1
+        }
+        if (consistency === 'thick') {
+            paintConsistency = 1.2
+        }
         let totalPaint = 0
         if (canvasShape === 'squareOrRectangle') {
             const area = canvasWidth * canvasHeight
             const sideArea = 2 * canvasDepth * (canvasWidth + canvasHeight)
-            const totalArea = area + sideArea
+            const totalArea = (area + sideArea) * paintConsistency
             totalPaint = totalArea / 25
         }
         if (canvasShape === 'circle') {
             const area = Math.PI * Math.pow(canvasDiameter / 2, 2) * canvasDepth
             const circumference = Math.PI * canvasDiameter
             const sideArea = circumference * canvasDepth
-            const totalArea = area + sideArea
+            const totalArea = (area + sideArea) * paintConsistency
             totalPaint = totalArea / 25
         }
         if (canvasShape === 'triangle') {
             const area = (canvasWidth * canvasWidth) / 2
             const sideArea = 3 * (canvasWidth * canvasDepth)
-            const totalArea = area + sideArea
+            const totalArea = (area + sideArea) * paintConsistency
             totalPaint = totalArea / 25
         }
         if (canvasShape === 'hexagon') {
             const area = (3 * Math.sqrt(3) * Math.pow(canvasDiameter, 2)) / 2
             const perimeter = 6 * canvasDiameter
-            const sidesArea = perimeter * canvasDepth
-            const totalArea = area + sidesArea
+            const sideArea = perimeter * canvasDepth
+            const totalArea = (area + sideArea) * paintConsistency
             totalPaint = totalArea / 25
         }
-        const roundedToTwoDecimals = parseFloat(totalPaint.toFixed(2))
+        const roundedToTwoDecimals = parseFloat(totalPaint.toFixed(1))
         setTotalPaintNeeded(roundedToTwoDecimals)
     }
 
     useEffect(() => {
         calculatePaintNeeded()
-    }, [canvasShape, canvasWidth, canvasHeight, canvasDiameter, canvasDepth])
+    }, [canvasShape, canvasWidth, canvasHeight, canvasDiameter, canvasDepth, consistency])
 
     return (
         <div className='flex flex-col gap-5'>
             <div>
+                <p className='mb-2 ml-2 text-left font-bold'>Pour Consistency:</p>
+                <div>
+                    <button
+                        className={`${consistency === 'thin' ? 'bg-gray-600 text-white' : 'bg-gray-400 text-white'} rounded-l-xl px-5 py-2 font-bold`}
+                        onClick={() => setConsistency('thin')}
+                    >
+                        Thin
+                    </button>
+                    <button
+                        className={`${consistency === 'medium' ? 'bg-gray-600 text-white' : 'bg-gray-400 text-white'} px-5 py-2 font-bold`}
+                        onClick={() => setConsistency('medium')}
+                    >
+                        Medium
+                    </button>
+                    <button
+                        className={`${consistency === 'thick' ? 'bg-gray-600 text-white' : '  bg-gray-400 text-white'}  rounded-r-xl px-5 py-2 font-bold`}
+                        onClick={() => setConsistency('thick')}
+                    >
+                        Thick
+                    </button>
+                </div>
                 <p className='mb-2 ml-2 text-left font-bold'>Canvas Shape:</p>
                 <Select value={canvasShape} onValueChange={setCanvasShape}>
                     <SelectTrigger>
@@ -143,9 +167,9 @@ const Index: NextComponentType<NextPageContext> = () => {
                     />
                 </div>
             )}
-            <p>Paint needed:</p>
-            <p className='text-4xl font-bold leading-[1rem]'>{totalPaintneeded}</p>
-            <p>ounces</p>
+            <p className='font-bold uppercase'>Paint Required</p>
+            <p className='text-[5rem] font-bold leading-[4rem]'>{totalPaintneeded}</p>
+            <p className='font-bold uppercase'>ounces</p>
         </div>
     )
 }
