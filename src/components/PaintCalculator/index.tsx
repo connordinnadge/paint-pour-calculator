@@ -65,8 +65,8 @@ const Index: NextComponentType<NextPageContext> = () => {
         <div className='flex w-full flex-col gap-5'>
             <div>
                 <p className='mb-2 ml-2 text-left font-bold'>Pour Consistency:</p>
-                <div className='mb-3 grid w-full grid-cols-3'>
-                    <TooltipProvider>
+                <TooltipProvider>
+                    <div className='mb-3 grid w-full grid-cols-3'>
                         <Tooltip>
                             <TooltipTrigger>
                                 <button
@@ -106,8 +106,8 @@ const Index: NextComponentType<NextPageContext> = () => {
                                 <p>Slow-moving. Suitable for controlled pours.</p>
                             </TooltipContent>
                         </Tooltip>
-                    </TooltipProvider>
-                </div>
+                    </div>
+                </TooltipProvider>
                 <p className='mb-2 ml-2 text-left font-bold'>Canvas Shape:</p>
                 <Select value={canvasShape} onValueChange={setCanvasShape}>
                     <SelectTrigger>
